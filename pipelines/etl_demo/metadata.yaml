@@ -1,0 +1,73 @@
+blocks:
+- all_upstream_blocks_executed: true
+  downstream_blocks:
+  - distribution_of_ratings
+  - number_of_meals_per_user
+  - transform_data
+  - transform_data
+  name: load dataset
+  status: executed
+  type: data_loader
+  upstream_blocks: []
+  uuid: load_dataset
+- all_upstream_blocks_executed: true
+  downstream_blocks:
+  - export_data
+  - export_data
+  name: transform data
+  status: executed
+  type: transformer
+  upstream_blocks:
+  - load_dataset
+  uuid: transform_data
+- all_upstream_blocks_executed: true
+  downstream_blocks: []
+  name: export data
+  status: executed
+  type: data_exporter
+  upstream_blocks:
+  - transform_data
+  uuid: export_data
+- all_upstream_blocks_executed: true
+  downstream_blocks: []
+  name: validate data was exported
+  status: updated
+  type: data_loader
+  upstream_blocks: []
+  uuid: validate_data_was_exported
+name: etl demo
+type: python
+uuid: etl_demo
+widgets:
+- all_upstream_blocks_executed: true
+  configuration:
+    buckets: 10
+    chart_type: histogram
+    group_by:
+    - rating
+    x: x
+  downstream_blocks: []
+  name: Distribution of ratings
+  status: executed
+  type: chart
+  upstream_blocks:
+  - load_dataset
+  uuid: distribution_of_ratings
+- all_upstream_blocks_executed: true
+  configuration:
+    chart_style: vertical
+    chart_type: bar chart
+    group_by:
+    - user ID
+    metrics:
+    - aggregation: count_distinct
+      column: meal transaction ID
+    x: x
+    y: y
+  downstream_blocks: []
+  name: Number of meals per user
+  status: executed
+  type: chart
+  upstream_blocks:
+  - load_dataset
+  uuid: number_of_meals_per_user
