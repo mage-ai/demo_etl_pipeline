@@ -1,7 +1,8 @@
 version: 0.1.1
 default:
-  POSTGRES_DBNAME: mage/demo
-  POSTGRES_HOST: db.bit.io
-  POSTGRES_PASSWORD: v2_3t7Cc_BKPZndtNeYxqSVTatNphR4f
+  POSTGRES_DBNAME: postgres
+  POSTGRES_USER: demo_user
+  POSTGRES_PASSWORD: make_data_magical
+  POSTGRES_HOST: db.pcrjclqaoqibkbptixsw.supabase.co
   POSTGRES_PORT: 5432
-  POSTGRES_USER: mage
+  POSTGRES_SCHEMA: elt_demo
